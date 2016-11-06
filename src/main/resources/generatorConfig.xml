@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+        <!--配置文件-->
+    <properties resource="story.properties" />
+    
+<!-- 必须配置驱动包的路径 -->
+    <classPathEntry location="C:\Users\Zhoulei\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />
+
+    <context id="Mysql" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!--数据库连接信息 -->
+		<jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.username}"
+		password="${jdbc.password}">
+		</jdbcConnection>
+
+        <!-- 指定生成pojo的包和此包在项目中的地址； -->
+        <javaModelGenerator targetPackage="com.we.story.modules.sys.entity"
+            targetProject="src\main\java" />
+
+        <!-- 指定生成pojo的映射xml文件的所在包和此包在项目中的地址 -->
+        <sqlMapGenerator targetPackage="mappings.modules.sys"
+            targetProject="src\main\resources" />
+
+        <!-- 指定生成访问映射xml文件的接口所在包和此包在项目中的地址； -->
+        <javaClientGenerator type="XMLMAPPER"
+            targetPackage="com.we.story.modules.sys.dao"
+            targetProject="src\main\java">
+        </javaClientGenerator>
+
+        <!--  表配置    tableName 表名      domainObjectName java类名，首字母必须大写，否则报字符串越界错误 -->
+        <table schema="story" tableName="sys_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!-- <property name="useActualColumnNames" value="true"/> -->
+        </table>
+        <!-- mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
+    </context>
+</generatorConfiguration>
